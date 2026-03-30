@@ -1,0 +1,1734 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UP TO CONNECT — Services IT & Sécurité au Maroc</title>
+  <meta name="description" content="Découvrez nos solutions IT : visioconférence, tableaux interactifs, vidéosurveillance, réseaux Wi-Fi et support maintenance pour entreprises au Maroc." />
+  <link rel="stylesheet" href="Style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════
+       ROOT OVERRIDES & FONT
+    ════════════════════════════════════ */
+    :root {
+      --accent: #6C63FF;
+      --accent-soft: rgba(108,99,255,.12);
+      --accent-mid: rgba(108,99,255,.25);
+      --accent-light: #a599ff;
+      --surface: #151f30;
+      --border: #1e2d47;
+      --muted: #8899b4;
+      --text: #e2e8f0;
+      --bg-deep: #0d1526;
+      --bg-mid: #111827;
+    }
+    .for-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+    }
+
+    /* ── NAV CTA ── */
+    .nav-cta {
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      color: #fff !important;
+      padding: 9px 22px !important;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .88rem;
+      letter-spacing: .3px;
+      box-shadow: 0 4px 18px rgba(108,99,255,.35);
+      transition: box-shadow .25s, transform .2s !important;
+    }
+    .nav-cta:hover {
+      box-shadow: 0 6px 24px rgba(108,99,255,.55) !important;
+      transform: translateY(-2px);
+    }
+
+    /* ════════════════════════════════════
+       PAGE HERO
+    ════════════════════════════════════ */
+    .page-hero {
+      position: relative;
+      padding: 110px 0 80px;
+      background: var(--bg-deep);
+      overflow: hidden;
+    }
+    /* Animated grid background */
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,99,255,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+    }
+    /* Glow orb */
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(108,99,255,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-mid);
+      border-radius: 50px;
+      padding: 5px 16px;
+      color: var(--accent-light);
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeUp .5s ease both;
+    }
+    .page-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.12;
+      margin: 0 0 18px;
+      background: linear-gradient(135deg, #fff 30%, #a599ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeUp .5s .1s ease both;
+    }
+    .page-hero p {
+      font-size: 1.08rem; color: var(--muted);
+      max-width: 580px; line-height: 1.75;
+      animation: fadeUp .5s .2s ease both;
+    }
+
+    /* Quick-jump service pills */
+    .service-jumps {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 36px;
+      animation: fadeUp .5s .3s ease both;
+      
+    }
+    .jump-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .82rem; font-weight: 500;
+      padding: 8px 18px; border-radius: 50px;
+      text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .jump-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent-light);
+      background: var(--accent-soft);
+    }
+    .jump-pill .pill-icon { font-size: .95rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ════════════════════════════════════
+       FILTER TABS
+    ════════════════════════════════════ */
+    .filter-bar {
+      background: var(--bg-mid);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0;
+    }
+    .filter-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px;
+      display: flex; gap: 0; overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-inner::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      background: none; border: none;
+      color: var(--muted); font-size: .88rem; font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      padding: 16px 22px; cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .filter-btn:hover { color: var(--text); }
+    .filter-btn.active {
+      color: var(--accent-light);
+      border-bottom-color: var(--accent);
+    }
+    .filter-count {
+      background: var(--accent-soft);
+      color: var(--accent-light);
+      font-size: .72rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 50px;
+    }
+
+    /* ════════════════════════════════════
+       SERVICE CATALOG GRID
+    ════════════════════════════════════ */
+    .catalog-section {
+      padding: 64px 0 80px;
+      background: var(--bg-deep);
+    }
+    .section-intro {
+      margin-bottom: 44px;
+    }
+    .section-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent-light); font-size: .74rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 12px;
+    }
+    .section-intro h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 800; margin: 0 0 10px;
+      background: linear-gradient(135deg, #fff, #a599ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .section-intro p { color: var(--muted); font-size: .97rem; }
+
+    /* ── SERVICE CARD ── */
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 22px;
+    }
+    .svc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 0;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      display: flex; flex-direction: column;
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .45s ease, transform .45s ease,
+                  border-color .3s, box-shadow .3s;
+    }
+    .svc-card.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .svc-card:hover {
+      transform: translateY(-6px) !important;
+      border-color: rgba(108,99,255,.45);
+      box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 1px rgba(108,99,255,.1);
+    }
+    /* Coloured top strip */
+    .svc-card-top {
+      padding: 28px 28px 0;
+      position: relative;
+    }
+    .svc-card-top::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      border-radius: 18px 18px 0 0;
+    }
+    .svc-card[data-cat="audiovisuel"] .svc-card-top::before { background: linear-gradient(90deg, #6C63FF, #9c95ff); }
+    .svc-card[data-cat="reseaux"]    .svc-card-top::before { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
+    .svc-card[data-cat="securite"]   .svc-card-top::before { background: linear-gradient(90deg, #ef4444, #f97316); }
+    .svc-card[data-cat="support"]    .svc-card-top::before { background: linear-gradient(90deg, #10b981, #06b6d4); }
+    .svc-card[data-cat="location"]   .svc-card-top::before { background: linear-gradient(90deg, #f59e0b, #f97316); }
+
+    .svc-cat-badge {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 4px 11px; border-radius: 50px;
+      margin-bottom: 14px;
+    }
+    .svc-card[data-cat="audiovisuel"] .svc-cat-badge { background: rgba(108,99,255,.15); color: #a599ff; }
+    .svc-card[data-cat="reseaux"]    .svc-cat-badge { background: rgba(6,182,212,.15);  color: #67e8f9; }
+    .svc-card[data-cat="securite"]   .svc-cat-badge { background: rgba(239,68,68,.15);  color: #fca5a5; }
+    .svc-card[data-cat="support"]    .svc-cat-badge { background: rgba(16,185,129,.15); color: #6ee7b7; }
+    .svc-card[data-cat="location"]   .svc-cat-badge { background: rgba(245,158,11,.15); color: #fcd34d; }
+
+    .svc-icon-wrap {
+      width: 54px; height: 54px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .svc-card[data-cat="audiovisuel"] .svc-icon-wrap { background: rgba(108,99,255,.15); color: #a599ff; }
+    .svc-card[data-cat="reseaux"]    .svc-icon-wrap { background: rgba(6,182,212,.15);  color: #67e8f9; }
+    .svc-card[data-cat="securite"]   .svc-icon-wrap { background: rgba(239,68,68,.15);  color: #fca5a5; }
+    .svc-card[data-cat="support"]    .svc-icon-wrap { background: rgba(16,185,129,.15); color: #6ee7b7; }
+    .svc-card[data-cat="location"]   .svc-icon-wrap { background: rgba(245,158,11,.15); color: #fcd34d; }
+
+    .svc-title {
+      font-size: 1.12rem; font-weight: 700;
+      color: var(--text); margin: 0 0 10px;
+    }
+    .svc-desc {
+      color: var(--muted); font-size: .9rem; line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Feature checklist */
+    .svc-card-body {
+      padding: 20px 28px 28px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .svc-features {
+      list-style: none; padding: 0; margin: 20px 0 24px;
+      display: flex; flex-direction: column; gap: 9px;
+      flex: 1;
+    }
+    .svc-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      color: #9eb0cc; font-size: .86rem; line-height: 1.5;
+    }
+    .svc-features li::before {
+      content: '✓';
+      width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 800; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .svc-card[data-cat="audiovisuel"] .svc-features li::before { background: rgba(108,99,255,.2); color: #a599ff; }
+    .svc-card[data-cat="reseaux"]    .svc-features li::before { background: rgba(6,182,212,.2);  color: #67e8f9; }
+    .svc-card[data-cat="securite"]   .svc-features li::before { background: rgba(239,68,68,.2);  color: #fca5a5; }
+    .svc-card[data-cat="support"]    .svc-features li::before { background: rgba(16,185,129,.2); color: #6ee7b7; }
+    .svc-card[data-cat="location"]   .svc-features li::before { background: rgba(245,158,11,.2); color: #fcd34d; }
+
+    /* "Pour qui" tag row */
+    .svc-for {
+      display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px;
+    }
+    .for-tag {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #6a7d9f; font-size: .76rem;
+      padding: 4px 11px; border-radius: 50px;
+    }
+
+    /* CTA link */
+    .svc-cta {
+      display: flex; align-items: center; justify-content: space-between;
+      text-decoration: none;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      color: var(--accent-light); font-size: .87rem; font-weight: 600;
+      transition: gap .2s;
+    }
+    .svc-cta:hover { color: #fff; }
+    .svc-cta .arrow {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .2s;
+    }
+    .svc-cta:hover .arrow { background: var(--accent); transform: translateX(4px); }
+
+    /* Hidden state for filter */
+    .svc-card.hidden {
+      display: none;
+    }
+
+    /* ════════════════════════════════════
+       DEEP-DIVE FEATURE SECTION
+       (alternating full-width rows)
+    ════════════════════════════════════ */
+    .deepdive-section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .deepdive-section:nth-child(even) { background: var(--bg-mid); }
+    .deepdive-section:nth-child(odd)  { background: var(--bg-deep); }
+
+    .deepdive-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .deepdive-row.reverse .deepdive-visual { order: -1; }
+
+    .deepdive-label {
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent-light); margin-bottom: 14px;
+    }
+    .deepdive-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; line-height: 1.2;
+      color: var(--text); margin: 0 0 16px;
+    }
+    .deepdive-desc {
+      color: var(--muted); font-size: .97rem; line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .deepdive-checks {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px;
+    }
+    .deepdive-checks li {
+      display: flex; align-items: center; gap: 9px;
+      color: #9eb0cc; font-size: .88rem;
+    }
+    .deepdive-checks li span.chk {
+      width: 20px; height: 20px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-mid);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-light); font-size: .7rem; font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* Visual panel (right side) */
+    .deepdive-visual {
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .deepdive-visual::after {
+      content: '';
+      position: absolute; bottom: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      opacity: .06; pointer-events: none;
+    }
+    .dv-blue::after  { background: #6C63FF; }
+    .dv-teal::after  { background: #06b6d4; }
+    .dv-red::after   { background: #ef4444; }
+    .dv-green::after { background: #10b981; }
+
+    .dv-big-icon {
+      margin-bottom: 22px;
+    }
+    .dv-stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .dv-stat {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .dv-stat-val {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .dv-stat-key { color: var(--muted); font-size: .8rem; }
+
+    .dv-blue  .dv-stat-val { color: #a599ff; }
+    .dv-teal  .dv-stat-val { color: #67e8f9; }
+    .dv-red   .dv-stat-val { color: #fca5a5; }
+    .dv-green .dv-stat-val { color: #6ee7b7; }
+
+    .dv-brands {
+      margin-top: 20px; padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .dv-brands-label {
+      color: var(--muted); font-size: .76rem;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .dv-brand-chips {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .dv-chip {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      color: #8899b4; font-size: .78rem; font-weight: 700;
+      letter-spacing: .5px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 8px;
+    }
+
+    /* ════════════════════════════════════
+       PACKAGES / TARIFS
+    ════════════════════════════════════ */
+    .packages-section {
+      padding: 80px 0;
+      background: var(--bg-mid);
+      border-top: 1px solid var(--border);
+    }
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 50px;
+    }
+    .pkg-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .45s ease, transform .45s ease,
+                  border-color .3s, box-shadow .3s;
+    }
+    .pkg-card.visible { opacity: 1; transform: translateY(0); }
+    .pkg-card:hover { transform: translateY(-6px) !important; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+    .pkg-card.featured {
+      border-color: rgba(108,99,255,.5);
+      background: linear-gradient(160deg, #1a1640 0%, #151f30 60%);
+      box-shadow: 0 0 0 1px rgba(108,99,255,.2), 0 20px 60px rgba(108,99,255,.15);
+    }
+    .pkg-card.featured:hover { transform: translateY(-8px) !important; }
+    .pkg-popular {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      color: #fff; font-size: .73rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 5px 18px; border-radius: 50px;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(108,99,255,.4);
+    }
+    .pkg-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .pkg-sub { color: var(--muted); font-size: .87rem; margin-bottom: 28px; }
+    .pkg-price {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2.2rem; font-weight: 800;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .pkg-price-note { color: var(--muted); font-size: .8rem; margin-bottom: 28px; }
+    .pkg-divider {
+      height: 1px; background: var(--border); margin-bottom: 24px;
+    }
+    .pkg-features {
+      list-style: none; padding: 0; margin: 0 0 32px;
+      display: flex; flex-direction: column; gap: 11px;
+    }
+    .pkg-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      color: #9eb0cc; font-size: .87rem; line-height: 1.5;
+    }
+    .pkg-features li .chk-wrap {
+      width: 18px; height: 18px; border-radius: 5px;
+      background: rgba(108,99,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-light); font-size: .65rem; font-weight: 900;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .pkg-features li.off { opacity: .35; }
+    .pkg-features li.off .chk-wrap {
+      background: rgba(255,255,255,.05); color: var(--muted);
+    }
+    .pkg-btn {
+      display: block; width: 100%; text-align: center;
+      padding: 13px 20px; border-radius: 12px;
+      font-weight: 600; font-size: .92rem;
+      text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .pkg-btn-outline {
+      border: 1px solid var(--border); color: var(--text);
+    }
+    .pkg-btn-outline:hover { border-color: var(--accent); color: var(--accent-light); }
+    .pkg-btn-solid {
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      color: #fff; border: none;
+      box-shadow: 0 6px 22px rgba(108,99,255,.35);
+    }
+    .pkg-btn-solid:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(108,99,255,.5); }
+
+    /* ════════════════════════════════════
+       PROCESS TIMELINE
+    ════════════════════════════════════ */
+    .process-section {
+      padding: 80px 0;
+      background: var(--bg-deep);
+      border-top: 1px solid var(--border);
+    }
+    .process-timeline {
+      position: relative;
+      max-width: 800px; margin: 56px auto 0;
+    }
+    .process-timeline::before {
+      content: '';
+      position: absolute; top: 0; bottom: 0; left: 27px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, rgba(108,99,255,.1) 100%);
+    }
+    .pt-item {
+      display: flex; gap: 28px; margin-bottom: 44px;
+      opacity: 0; transform: translateX(-16px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .pt-item.visible { opacity: 1; transform: translateX(0); }
+    .pt-item:last-child { margin-bottom: 0; }
+    .pt-dot {
+      width: 56px; height: 56px; flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.1rem; font-weight: 800; color: #fff;
+      box-shadow: 0 4px 20px rgba(108,99,255,.4);
+      position: relative; z-index: 1;
+    }
+    .pt-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      flex: 1;
+    }
+    .pt-content h4 {
+      color: var(--text); font-size: 1rem; font-weight: 700; margin: 0 0 6px;
+    }
+    .pt-content p { color: var(--muted); font-size: .88rem; line-height: 1.65; margin: 0; }
+    .pt-badge {
+      display: inline-block;
+      background: var(--accent-soft); color: var(--accent-light);
+      font-size: .72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 50px;
+      margin-bottom: 8px; letter-spacing: .5px;
+    }
+
+    /* ════════════════════════════════════
+       COMMITMENT BAND
+    ════════════════════════════════════ */
+    .commit-band {
+      background: linear-gradient(135deg, #110f30 0%, #0d1526 50%, #0d1a2a 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 0;
+    }
+    .commit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .commit-item { text-align: center; }
+    .commit-icon {
+      font-size: 2rem; margin-bottom: 12px;
+    }
+    .commit-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--text);
+      margin-bottom: 6px;
+    }
+    .commit-desc { color: var(--muted); font-size: .85rem; line-height: 1.6; }
+
+    /* ════════════════════════════════════
+       FINAL CTA SECTION
+    ════════════════════════════════════ */
+    .final-cta {
+      padding: 100px 0;
+      background: var(--bg-mid);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(108,99,255,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .final-cta .container { position: relative; z-index: 1; }
+    .final-cta h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 30%, #a599ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    .final-cta p {
+      color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto 36px; line-height: 1.75;
+    }
+    .cta-buttons {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1f13c3, #746ec8);
+      color: #fff; font-weight: 700; font-size: .95rem;
+      padding: 14px 32px; border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(108,99,255,.4);
+      transition: transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(108,99,255,.55); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text); font-weight: 600; font-size: .95rem;
+      padding: 14px 32px; border-radius: 12px;
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent-light); }
+
+    /* ════════════════════════════════════
+       FLOATING WHATSAPP + SCROLL TOP
+    ════════════════════════════════════ */
+    .whatsapp-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      display: flex; align-items: center; gap: 10px;
+      background: #25D366; color: #fff;
+      font-size: .88rem; font-weight: 600;
+      padding: 13px 20px 13px 16px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
+      transition: box-shadow .25s, transform .25s;
+      animation: floatIn .5s .8s both;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .whatsapp-float:hover { box-shadow: 0 10px 32px rgba(37,211,102,.6); transform: translateY(-3px); color: #fff; }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    #scroll-top {
+      position: fixed; bottom: 28px; left: 28px; z-index: 998;
+      width: 44px; height: 44px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .3s, border-color .25s;
+      color: var(--accent);
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: all; }
+    #scroll-top:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    /* ════════════════════════════════════
+       FOOTER PATCH
+    ════════════════════════════════════ */
+    footer { background: var(--bg-deep); border-top: 1px solid var(--border); padding: 28px 0; }
+    footer .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    footer p { color: rgba(255,255,255,.5); font-size: .85rem; margin: 0; }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { color: var(--muted); font-size: .85rem; text-decoration: none; transition: color .2s; }
+    .footer-nav a:hover { color: var(--accent-light); }
+
+    /* ════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .deepdive-row { grid-template-columns: 1fr; gap: 32px; }
+      .deepdive-row.reverse { direction: ltr; }
+      .pkg-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+      .deepdive-checks { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .svc-grid { grid-template-columns: 1fr; }
+      .whatsapp-float span { display: none; }
+      .whatsapp-float { padding: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════ HEADER ════════════ -->
+ <header>
+  <div class="container navbar">
+    <a class="brand" href="index.html">UP TO CONNECT</a>
+
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a class="active" href="service.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-drawer" id="nav-drawer">
+      <a href="index.html">Accueil</a>
+      <a class="active" href="service.html">Services</a>
+      <a href="contact.html">Contact</a>
+      
+    </nav>
+  </div>
+</header>
+  <main>
+    <!-- ════════════ PAGE HERO ════════════ -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <circle cx="6" cy="6" r="6" fill="#6C63FF" opacity=".3"/>
+            <circle cx="6" cy="6" r="3" fill="#6C63FF"/>
+          </svg>
+          Solutions complètes · Maroc
+        </div>
+        <h1>Des solutions IT<br>taillées pour votre<br>business.</h1>
+        <p>
+          De la salle de réunion connectée au réseau sécurisé multi-sites — chaque installation est réalisée par notre équipe certifiée, dans les délais et selon votre budget.
+        </p>
+        <div class="service-jumps">
+          <a class="jump-pill" href="#audiovisuel" style="font-size:18px;">
+  <span class="pill-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.723v6.554a1 1 0 0 1-1.447.894L15 14"/>
+      <rect x="2" y="7" width="13" height="10" rx="2"/>
+    </svg>
+  </span>
+  Audiovisuel
+</a>
+
+<a class="jump-pill" href="#reseaux" style="font-size:18px;">
+  <span class="pill-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+      <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+      <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+      <circle cx="12" cy="20" r="1" fill="#38BDF8" stroke="none"/>
+    </svg>
+  </span>
+  Réseaux
+</a>
+
+<a class="jump-pill" href="#securite" style="font-size:18px;">
+  <span class="pill-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <polyline points="9 12 11 14 15 10"/>
+    </svg>
+  </span>
+  Vidéosurveillance
+</a>
+
+<a class="jump-pill" href="#support" style="font-size:18px;">
+  <span class="pill-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+    </svg>
+  </span>
+  Support & Maintenance
+</a>
+
+<a class="jump-pill" href="#packages" style="font-size:18px;">
+  <span class="pill-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+      <line x1="12" y1="22.08" x2="12" y2="12"/>
+    </svg>
+  </span>
+  Nos formules
+</a>
+      </div>
+    </section>
+
+    <!-- ════════════ FILTER TABS ════════════ -->
+    <div class="filter-bar">
+      <div class="filter-inner">
+       <button class="filter-btn active" data-filter="all" style="font-size:15px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+  </svg>
+  Tous <span class="filter-count">7</span>
+</button>
+
+<button class="filter-btn" data-filter="audiovisuel" style="font-size:15px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.723v6.554a1 1 0 0 1-1.447.894L15 14"/>
+    <rect x="2" y="7" width="13" height="10" rx="2"/>
+  </svg>
+  Audiovisuel <span class="filter-count">3</span>
+</button>
+
+<button class="filter-btn" data-filter="reseaux" style="font-size:15px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+    <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+    <circle cx="12" cy="20" r="1" fill="#38BDF8" stroke="none"/>
+  </svg>
+  Réseaux <span class="filter-count">1</span>
+</button>
+
+<button class="filter-btn" data-filter="securite" style="font-size:15px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <polyline points="9 12 11 14 15 10"/>
+  </svg>
+  Sécurité <span class="filter-count">1</span>
+</button>
+
+<button class="filter-btn" data-filter="location" style="font-size:15px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+  </svg>
+  Location <span class="filter-count">1</span>
+</button>
+
+<button class="filter-btn" data-filter="support" style="font-size:15px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+  </svg>
+  Support <span class="filter-count">1</span>
+</button>
+      </div>
+    </div>
+
+    <!-- ════════════ SERVICE CATALOG ════════════ -->
+   <section class="catalog-section">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-tag">Catalogue de services</span>
+      <h2>Tout ce qu'on peut faire<br>pour vous</h2>
+      <p>Cliquez sur un service pour demander un devis personnalisé.</p>
+    </div>
+
+    <div class="svc-grid" id="svc-grid">
+
+      <!-- VISIOCONFÉRENCE -->
+      <div class="svc-card" data-cat="audiovisuel">
+        <div class="svc-card-top">
+          <span class="svc-cat-badge">Audiovisuel</span>
+          <div class="svc-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14"/>
+              <rect x="2" y="7" width="13" height="10" rx="2"/>
+            </svg>
+          </div>
+          <p class="svc-title">Solutions de visioconférence</p>
+          <p class="svc-desc">Salles de réunion HD avec caméra panoramique, micro anti-bruit, haut-parleurs et configuration Zoom / Teams / Meet.</p>
+        </div>
+        <div class="svc-card-body">
+          <ul class="svc-features">
+            <li>Caméra panoramique 4K auto-framing</li>
+            <li>Microphones à annulation de bruit</li>
+            <li>Configuration Zoom, Teams, Meet</li>
+            <li>Écran ou projecteur intégré</li>
+            <li>Formation de vos équipes incluse</li>
+          </ul>
+          <div class="svc-for">
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              Entreprises
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Cliniques
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+              Cabinets
+            </span>
+          </div>
+          <a class="svc-cta" href="contact.html">
+            Demander un devis
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- TABLEAUX INTERACTIFS -->
+      <div class="svc-card" data-cat="audiovisuel">
+        <div class="svc-card-top">
+          <span class="svc-cat-badge">Audiovisuel</span>
+          <div class="svc-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2" y="3" width="20" height="14" rx="2"/>
+  <path d="M8 21h8M12 17v4"/>
+  <path d="M9 10l2 2 4-4"/>
+</svg>
+          </div>
+          <p class="svc-title">Tableaux interactifs</p>
+          <p class="svc-desc">Écrans tactiles 4K de 65" à 110" pour salles de classe, formations professionnelles et salles de conseil.</p>
+        </div>
+        <div class="svc-card-body">
+          <ul class="svc-features">
+            <li>Écrans tactiles 65" à 110" 4K</li>
+            <li>Compatible Android & Windows intégré</li>
+            <li>Logiciels pédagogiques configurés</li>
+            <li>Fixation murale ou sur roulettes</li>
+            <li>Formation enseignants / formateurs</li>
+          </ul>
+          <div class="svc-for">
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Écoles
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              Universités
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              Entreprises
+            </span>
+          </div>
+          <a class="svc-cta" href="contact.html">
+            Demander un devis
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- AFFICHAGE DYNAMIQUE -->
+      <div class="svc-card" data-cat="audiovisuel">
+        <div class="svc-card-top">
+          <span class="svc-cat-badge">Audiovisuel</span>
+          <div class="svc-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2" y="3" width="14" height="10" rx="1"/>
+  <rect x="16" y="3" width="6" height="5" rx="1"/>
+  <rect x="16" y="10" width="6" height="5" rx="1"/>
+  <path d="M2 17h14M8 17v3M5 20h6"/>
+</svg>
+          </div>
+          <p class="svc-title">Affichage dynamique</p>
+          <p class="svc-desc">Réseau d'écrans connectés pour diffuser vos contenus publicitaires et informatifs, gérés à distance depuis une interface web.</p>
+        </div>
+        <div class="svc-card-body">
+          <ul class="svc-features">
+            <li>Écrans commerciaux haute luminosité</li>
+            <li>Lecteurs multimédias intégrés</li>
+            <li>Gestion des playlists à distance</li>
+            <li>Planification horaire automatique</li>
+            <li>Multi-écrans en réseau centralisé</li>
+          </ul>
+          <div class="svc-for">
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FB923C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><rect x="9" y="13" width="6" height="8"/></svg>
+              Hôtels
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Retail
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Santé
+            </span>
+          </div>
+          <a class="svc-cta" href="contact.html">
+            Demander un devis
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- RÉSEAUX & INFRASTRUCTURE -->
+      <div class="svc-card" data-cat="reseaux">
+        <div class="svc-card-top">
+          <span class="svc-cat-badge">Réseaux</span>
+          <div class="svc-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0114.08 0"/>
+              <path d="M1.42 9a16 16 0 0121.16 0"/>
+              <path d="M8.53 16.11a6 6 0 016.95 0"/>
+              <circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <p class="svc-title">Réseaux & Infrastructure</p>
+          <p class="svc-desc">Conception, câblage, déploiement Wi-Fi et configuration de routeurs, switches et firewalls pour entreprises de toute taille.</p>
+        </div>
+        <div class="svc-card-body">
+          <ul class="svc-features">
+            <li>Câblage structuré Cat6A / Cat7</li>
+            <li>Wi-Fi entreprise (Cisco, Ubiquiti)</li>
+            <li>VLANs, routage et QoS</li>
+            <li>Firewall & sécurité réseau</li>
+            <li>Supervision et monitoring 24/7</li>
+          </ul>
+          <div class="svc-for">
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              PME
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+              Admins
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Santé
+            </span>
+          </div>
+          <a class="svc-cta" href="contact.html">
+            Demander un devis
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- VIDÉOSURVEILLANCE -->
+      <div class="svc-card" data-cat="securite">
+        <div class="svc-card-top">
+          <span class="svc-cat-badge">Sécurité</span>
+          <div class="svc-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <p class="svc-title">Vidéosurveillance CCTV</p>
+          <p class="svc-desc">Systèmes de caméras IP HD / 4K avec stockage NAS, accès mobile sécurisé et alertes intelligentes par détection de mouvement.</p>
+        </div>
+        <div class="svc-card-body">
+          <ul class="svc-features">
+            <li>Caméras IP 4K indoor / outdoor</li>
+            <li>Enregistreurs NVR haute capacité</li>
+            <li>Accès mobile iOS & Android</li>
+            <li>Détection IA (mouvement, intrusion)</li>
+            <li>Stockage sécurisé jusqu'à 90 jours</li>
+          </ul>
+          <div class="svc-for">
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              Industrie
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Cliniques
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Commerce
+            </span>
+          </div>
+          <a class="svc-cta" href="contact.html">
+            Demander un devis
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- LOCATION -->
+      <div class="svc-card" data-cat="location">
+        <div class="svc-card-top">
+          <span class="svc-cat-badge">Location</span>
+          <div class="svc-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="13" rx="2"/>
+              <path d="M6 20h12M9 17v3M15 17v3"/>
+              <path d="M8 10l2 2 4-4"/>
+            </svg>
+          </div>
+          <p class="svc-title">Location d'équipements AV</p>
+          <p class="svc-desc">Location d'écrans, systèmes de sonorisation et équipements de visioconférence pour vos événements professionnels.</p>
+        </div>
+        <div class="svc-card-body">
+          <ul class="svc-features">
+            <li>Écrans LED & LCD de 40" à 110"</li>
+            <li>Sonorisation & microphones</li>
+            <li>Livraison, installation, démontage</li>
+            <li>Technicien sur site si besoin</li>
+            <li>Disponible en court et long terme</li>
+          </ul>
+          <div class="svc-for">
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Événements
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              Conférences
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              Formations
+            </span>
+          </div>
+          <a class="svc-cta" href="contact.html">
+            Demander un devis
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- SUPPORT & MAINTENANCE -->
+      <div class="svc-card" data-cat="support">
+        <div class="svc-card-top">
+          <span class="svc-cat-badge">Support</span>
+          <div class="svc-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <p class="svc-title">Support & Maintenance</p>
+          <p class="svc-desc">Contrats de maintenance mensuels ou annuels avec visites préventives, assistance téléphonique prioritaire et intervention d'urgence sous 4h.</p>
+        </div>
+        <div class="svc-card-body">
+          <ul class="svc-features">
+            <li>Visites préventives planifiées</li>
+            <li>Support téléphonique prioritaire</li>
+            <li>Intervention d'urgence sous 4h</li>
+            <li>Télémaintenance à distance</li>
+            <li>Rapport mensuel d'état du parc</li>
+          </ul>
+          <div class="svc-for">
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+              Toutes tailles
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Santé
+            </span>
+            <span class="for-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+              Admins
+            </span>
+          </div>
+          <a class="svc-cta" href="contact.html">
+            Demander un devis
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ════════════ DEEP-DIVE: VISIOCONFÉRENCE ════════════ -->
+    <section class="deepdive-section" id="audiovisuel">
+      <div class="container">
+        <div class="deepdive-row reveal">
+          <div class="deepdive-text">
+            <div class="deepdive-label">Audiovisuel — Visioconférence</div>
+            <h2 class="deepdive-title">Votre salle de réunion, pensée pour communiquer sans friction.</h2>
+            <p class="deepdive-desc">
+              Une mauvaise configuration audio ou une caméra qui ne cadre pas coûte de l'énergie et de la crédibilité. On déploie des systèmes pro — pas du grand public. Chaque salle est testée et validée avant de vous remettre les clés.
+            </p>
+            <ul class="deepdive-checks">
+              <li><span class="chk">✓</span> Caméra 4K auto-framing</li>
+              <li><span class="chk">✓</span> Micro périmétrique 360°</li>
+              <li><span class="chk">✓</span> Zoom & Teams certifié</li>
+              <li><span class="chk">✓</span> Contrôle tactile centralisé</li>
+              <li><span class="chk">✓</span> Installation en 1-2 jours</li>
+              <li><span class="chk">✓</span> Formation incluse</li>
+            </ul>
+          </div>
+          <div class="deepdive-visual dv-blue">
+            <div class="dv-big-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a599ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14"/>
+                <rect x="2" y="7" width="13" height="10" rx="2"/>
+              </svg>
+            </div>
+            <div class="dv-stat-grid">
+              <div class="dv-stat"><div class="dv-stat-val">1-2j</div><div class="dv-stat-key">Délai installation</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">4K</div><div class="dv-stat-key">Résolution caméra</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">360°</div><div class="dv-stat-key">Couverture micro</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">∞</div><div class="dv-stat-key">Support post-install</div></div>
+            </div>
+            <div class="dv-brands">
+              <div class="dv-brands-label">Marques installées</div>
+              <div class="dv-brand-chips">
+                <span class="dv-chip">Poly</span>
+                <span class="dv-chip">Logitech</span>
+                <span class="dv-chip">Yealink</span>
+                <span class="dv-chip">Barco</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ DEEP-DIVE: RÉSEAUX ════════════ -->
+    <section class="deepdive-section" id="reseaux">
+      <div class="container">
+        <div class="deepdive-row reverse reveal">
+          <div class="deepdive-text">
+            <div class="deepdive-label">Infrastructure — Réseaux & Wi-Fi</div>
+            <h2 class="deepdive-title">Un réseau qui ne lâche jamais, même en charge maximale.</h2>
+            <p class="deepdive-desc">
+              Câblage structuré, architecture Wi-Fi multi-points, segmentation VLAN et firewall configuré sur mesure. On conçoit une infrastructure qui grandit avec vous, documentée et supervisée.
+            </p>
+            <ul class="deepdive-checks">
+              <li><span class="chk">✓</span> Câblage Cat6A / Fibre</li>
+              <li><span class="chk">✓</span> Wi-Fi 6 haute densité</li>
+              <li><span class="chk">✓</span> Firewall & segmentation</li>
+              <li><span class="chk">✓</span> VPN site à site</li>
+              <li><span class="chk">✓</span> Supervision temps réel</li>
+              <li><span class="chk">✓</span> Documentation complète</li>
+            </ul>
+          </div>
+          <div class="deepdive-visual dv-teal">
+            <div class="dv-big-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0114.08 0"/>
+                <path d="M1.42 9a16 16 0 0121.16 0"/>
+                <path d="M8.53 16.11a6 6 0 016.95 0"/>
+                <circle cx="12" cy="20" r="1" fill="#67e8f9" stroke="none"/>
+              </svg>
+            </div>
+            <div class="dv-stat-grid">
+              <div class="dv-stat"><div class="dv-stat-val">10Gbps</div><div class="dv-stat-key">Backbone max</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">Wi-Fi 6</div><div class="dv-stat-key">Standard déployé</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">+150</div><div class="dv-stat-key">Postes max / projet</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">24/7</div><div class="dv-stat-key">Supervision active</div></div>
+            </div>
+            <div class="dv-brands">
+              <div class="dv-brands-label">Marques installées</div>
+              <div class="dv-brand-chips">
+                <span class="dv-chip">Cisco</span>
+                <span class="dv-chip">Ubiquiti</span>
+                <span class="dv-chip">Cambium</span>
+                <span class="dv-chip">Fortinet</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ DEEP-DIVE: SÉCURITÉ ════════════ -->
+    <section class="deepdive-section" id="securite">
+      <div class="container">
+        <div class="deepdive-row reveal">
+          <div class="deepdive-text">
+            <div class="deepdive-label">Sécurité — Vidéosurveillance CCTV</div>
+            <h2 class="deepdive-title">Surveillez vos locaux en temps réel, depuis n'importe où.</h2>
+            <p class="deepdive-desc">
+              Des caméras IP 4K avec détection intelligente par IA, accès mobile sécurisé et stockage longue durée. On installe, on paramètre, on forme — et on reste disponibles.
+            </p>
+            <ul class="deepdive-checks">
+              <li><span class="chk">✓</span> Caméras 4K indoor & outdoor</li>
+              <li><span class="chk">✓</span> Détection IA (mouvement, visage)</li>
+              <li><span class="chk">✓</span> Enregistrement jusqu'à 90 jours</li>
+              <li><span class="chk">✓</span> Accès mobile chiffré</li>
+              <li><span class="chk">✓</span> Intégration contrôle d'accès</li>
+              <li><span class="chk">✓</span> Alertes temps réel</li>
+            </ul>
+          </div>
+          <div class="deepdive-visual dv-red">
+            <div class="dv-big-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fca5a5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <div class="dv-stat-grid">
+              <div class="dv-stat"><div class="dv-stat-val">4K</div><div class="dv-stat-key">Résolution max</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">90j</div><div class="dv-stat-key">Rétention stockage</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">IA</div><div class="dv-stat-key">Détection intégrée</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">24/7</div><div class="dv-stat-key">Enregistrement continu</div></div>
+            </div>
+            <div class="dv-brands">
+              <div class="dv-brands-label">Marques installées</div>
+              <div class="dv-brand-chips">
+                <span class="dv-chip">Hikvision</span>
+                <span class="dv-chip">Dahua</span>
+                <span class="dv-chip">Hanwha</span>
+                <span class="dv-chip">Axis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ DEEP-DIVE: SUPPORT ════════════ -->
+    <section class="deepdive-section" id="support">
+      <div class="container">
+        <div class="deepdive-row reverse reveal">
+          <div class="deepdive-text">
+            <div class="deepdive-label">Support — Maintenance & Suivi</div>
+            <h2 class="deepdive-title">On reste à vos côtés longtemps après l'installation.</h2>
+            <p class="deepdive-desc">
+              Un contrat de maintenance, c'est la tranquillité d'esprit. Visites préventives planifiées, support prioritaire, intervention d'urgence sous 4h — et un rapport mensuel pour garder la visibilité sur votre parc IT.
+            </p>
+            <ul class="deepdive-checks">
+              <li><span class="chk">✓</span> Contrats mensuels ou annuels</li>
+              <li><span class="chk">✓</span> Visites préventives sur site</li>
+              <li><span class="chk">✓</span> Intervention urgence &lt; 4h</li>
+              <li><span class="chk">✓</span> Téléassistance à distance</li>
+              <li><span class="chk">✓</span> Rapport mensuel d'état</li>
+              <li><span class="chk">✓</span> Hotline dédiée 24/7</li>
+            </ul>
+          </div>
+          <div class="deepdive-visual dv-green">
+            <div class="dv-big-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <div class="dv-stat-grid">
+              <div class="dv-stat"><div class="dv-stat-val">&lt;4h</div><div class="dv-stat-key">Délai intervention</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">24/7</div><div class="dv-stat-key">Hotline disponible</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">98%</div><div class="dv-stat-key">Taux de satisfaction</div></div>
+              <div class="dv-stat"><div class="dv-stat-val">SLA</div><div class="dv-stat-key">Garanti par contrat</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ PACKAGES ════════════ -->
+    <section class="packages-section" id="packages">
+      <div class="container">
+        <div class="section-intro" style="text-align:center;">
+          <span class="section-tag">Formules</span>
+          <h2>Choisissez la formule<br>adaptée à vos besoins</h2>
+          <p>Tous les projets incluent audit gratuit, devis sous 24h et garantie d'installation.</p>
+        </div>
+        <div class="pkg-grid">
+
+          <!-- ESSENTIEL -->
+          <div class="pkg-card">
+            <div class="pkg-name">Essentiel</div>
+            <div class="pkg-sub">Pour les petites structures et indépendants</div>
+            <div class="pkg-price">Sur devis</div>
+            <div class="pkg-price-note">Après audit gratuit de vos besoins</div>
+            <div class="pkg-divider"></div>
+            <ul class="pkg-features">
+              <li><span class="chk-wrap">✓</span> Audit et devis gratuit</li>
+              <li><span class="chk-wrap">✓</span> Installation sur site</li>
+              <li><span class="chk-wrap">✓</span> Formation de base (2h)</li>
+              <li><span class="chk-wrap">✓</span> Garantie matériel 1 an</li>
+              <li><span class="chk-wrap">✓</span> Support téléphonique (heures ouvrables)</li>
+              <li class="off"><span class="chk-wrap">–</span> Contrat de maintenance</li>
+              <li class="off"><span class="chk-wrap">–</span> Intervention d'urgence &lt;4h</li>
+              <li class="off"><span class="chk-wrap">–</span> Rapport mensuel</li>
+            </ul>
+            <a class="pkg-btn pkg-btn-outline" href="contact.html">Demander un devis</a>
+          </div>
+
+          <!-- PRO — FEATURED -->
+          <div class="pkg-card featured">
+            <div class="pkg-popular">⭐ Le plus choisi</div>
+            <div class="pkg-name">Pro</div>
+            <div class="pkg-sub">Pour les PME et équipes en croissance</div>
+            <div class="pkg-price">Sur devis</div>
+            <div class="pkg-price-note">Tout inclus · Devis adapté à votre projet</div>
+            <div class="pkg-divider"></div>
+            <ul class="pkg-features">
+              <li><span class="chk-wrap">✓</span> Audit et devis gratuit</li>
+              <li><span class="chk-wrap">✓</span> Installation prioritaire sur site</li>
+              <li><span class="chk-wrap">✓</span> Formation complète (demi-journée)</li>
+              <li><span class="chk-wrap">✓</span> Garantie matériel 2 ans</li>
+              <li><span class="chk-wrap">✓</span> Support prioritaire 6j/7</li>
+              <li><span class="chk-wrap">✓</span> Contrat maintenance annuel</li>
+              <li><span class="chk-wrap">✓</span> Intervention &lt;4h en urgence</li>
+              <li class="off"><span class="chk-wrap">–</span> Rapport mensuel dédié</li>
+            </ul>
+            <a class="pkg-btn pkg-btn-solid" href="contact.html">Commencer maintenant</a>
+          </div>
+
+          <!-- ENTERPRISE -->
+          <div class="pkg-card">
+            <div class="pkg-name">Entreprise</div>
+            <div class="pkg-sub">Pour les grands comptes et multi-sites</div>
+            <div class="pkg-price">Sur mesure</div>
+            <div class="pkg-price-note">Contrat personnalisé · SLA garanti</div>
+            <div class="pkg-divider"></div>
+            <ul class="pkg-features">
+              <li><span class="chk-wrap">✓</span> Audit complet multi-sites</li>
+              <li><span class="chk-wrap">✓</span> Chef de projet dédié</li>
+              <li><span class="chk-wrap">✓</span> Formation avancée & documentation</li>
+              <li><span class="chk-wrap">✓</span> Garantie étendue sur mesure</li>
+              <li><span class="chk-wrap">✓</span> Hotline dédiée 24h/24, 7j/7</li>
+              <li><span class="chk-wrap">✓</span> Maintenance préventive mensuelle</li>
+              <li><span class="chk-wrap">✓</span> Intervention &lt;2h en urgence</li>
+              <li><span class="chk-wrap">✓</span> Rapport mensuel détaillé + KPIs</li>
+            </ul>
+            <a class="pkg-btn pkg-btn-outline" href="contact.html">Nous contacter</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ PROCESS TIMELINE ════════════ -->
+    <section class="process-section">
+      <div class="container">
+        <div class="section-intro" style="text-align:center;" class="reveal">
+          <span class="section-tag">Notre méthode</span>
+          <h2>Du premier appel<br>au support continu</h2>
+          <p>Un processus transparent, sans surprise sur la facture finale.</p>
+        </div>
+        <div class="process-timeline">
+          <div class="pt-item">
+            <div class="pt-dot">1</div>
+            <div class="pt-content">
+              <div class="pt-badge">Jour 1</div>
+              <h4>Prise de contact & audit gratuit</h4>
+              <p>Un de nos experts se déplace ou vous contacte pour analyser votre infrastructure, vos besoins et votre budget. Aucun engagement requis.</p>
+            </div>
+          </div>
+          <div class="pt-item">
+            <div class="pt-dot">2</div>
+            <div class="pt-content">
+              <div class="pt-badge">Sous 24h</div>
+              <h4>Devis détaillé & sélection du matériel</h4>
+              <p>Vous recevez une proposition complète avec le matériel sélectionné, les délais d'intervention et le prix tout compris. Pas de frais cachés.</p>
+            </div>
+          </div>
+          <div class="pt-item">
+            <div class="pt-dot">3</div>
+            <div class="pt-content">
+              <div class="pt-badge">J+3 à J+7</div>
+              <h4>Installation par notre équipe certifiée</h4>
+              <p>Déploiement soigné sans perturber votre activité. Câblage propre, configuration complète, tests de charge et validation finale avant remise des clés.</p>
+            </div>
+          </div>
+          <div class="pt-item">
+            <div class="pt-dot">4</div>
+            <div class="pt-content">
+              <div class="pt-badge">Jour J</div>
+              <h4>Formation de vos équipes sur site</h4>
+              <p>Prise en main guidée pour tous les utilisateurs. On fournit une documentation personnalisée et on reste disponibles par téléphone dès le lendemain.</p>
+            </div>
+          </div>
+          <div class="pt-item">
+            <div class="pt-dot">∞</div>
+            <div class="pt-content">
+              <div class="pt-badge">Continu</div>
+              <h4>Suivi, maintenance & support long terme</h4>
+              <p>Contrats de maintenance optionnels, supervision à distance, alertes proactives et interventions d'urgence. On reste votre partenaire dans la durée.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ COMMITMENT BAND ════════════ -->
+    <div class="commit-band">
+      <div class="container">
+        <div class="commit-grid">
+          <div class="commit-item">
+            <div class="commit-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="6"/>
+    <circle cx="12" cy="12" r="2" fill="#6C63FF"/>
+  </svg>
+</div>
+<div class="commit-title">Devis sous 24h</div>
+<div class="commit-desc">Proposition détaillée après audit, toujours dans les 24 heures.</div>
+</div>
+
+<div class="commit-item">
+  <div class="commit-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+    </svg>
+  </div>
+  <div class="commit-title">Installation soignée</div>
+  <div class="commit-desc">Câblage propre, zéro dégât, validation complète avant départ.</div>
+</div>
+
+<div class="commit-item">
+  <div class="commit-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <polyline points="9 12 11 14 15 10"/>
+    </svg>
+  </div>
+  <div class="commit-title">Garantie matériel</div>
+  <div class="commit-desc">Garantie fabricant + SAV assuré directement par notre équipe.</div>
+</div>
+
+<div class="commit-item">
+  <div class="commit-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg>
+  </div>
+  <div class="commit-title">Support réactif</div>
+  <div class="commit-desc">Un vrai interlocuteur — pas un ticket en attente pendant 3 jours.</div>
+</div>
+
+<div class="commit-item">
+  <div class="commit-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 2a10 10 0 0 1 0 20" stroke="#EF4444"/>
+      <path d="M2 12h20"/>
+      <path d="M12 2c-2.76 3.45-4 6.8-4 10s1.24 6.55 4 10" stroke="#EF4444"/>
+    </svg>
+  </div>
+  <div class="commit-title">Tout le Maroc</div>
+  <div class="commit-desc">Intervention Casablanca, Rabat, Marrakech, et tout le Royaume.</div>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════ FINAL CTA ════════════ -->
+    <section class="final-cta">
+      <div class="container">
+        <span class="section-tag">On commence quand vous voulez</span>
+        <h2>Parlez-nous de votre projet.</h2>
+        <p>Audit gratuit, devis sous 24h, installation rapide. Sans engagement, sans mauvaise surprise.</p>
+        <div class="cta-buttons">
+          <a class="btn-primary" href="contact.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Demander un devis gratuit
+          </a>
+          <a class="btn-ghost" href="tel:+212669272386">
+            📞 +212 6 69 272 386
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer>
+    <div class="container">
+      <p style="color: rgba(255,255,255,.75);">© 2026 UP TO CONNECT — Tous droits réservés - Designed by  <strong> <a href="https://www.linkedin.com/in/jamal-jallal-153ab0256/" style="color: rgba(255,255,255,.75); text-decoration: none;">JAMAL JALAL</a> </strong></p>
+      <nav class="footer-nav">
+        <a href="index.html">Accueil</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ════════════ FLOATING WHATSAPP ════════════ -->
+  <a class="whatsapp-float" href="https://wa.me/212669272386?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20projet%20IT." target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- ════════════ SCROLL TO TOP ════════════ -->
+  <button id="scroll-top" aria-label="Retour en haut">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+const navDrawer = document.getElementById('nav-drawer');
+
+if (hamburger && navDrawer) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navDrawer.classList.toggle('open');
+  });
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navDrawer.classList.remove('open');
+    }
+  });
+}
+    /* ── Filter tabs ── */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const svcCards   = document.querySelectorAll('.svc-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        svcCards.forEach(card => {
+          const match = filter === 'all' || card.dataset.cat === filter;
+          card.classList.toggle('hidden', !match);
+          /* Re-trigger reveal for newly visible cards */
+          if (match && !card.classList.contains('visible')) {
+            card.classList.add('visible');
+          }
+        });
+      });
+    });
+
+    /* ── Scroll reveal ── */
+    const revealEls = document.querySelectorAll('.reveal, .svc-card, .pkg-card, .pt-item');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.dataset.delay || 0;
+          setTimeout(() => el.classList.add('visible'), +delay);
+          revealObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealEls.forEach((el, i) => {
+      const parent = el.closest('.svc-grid, .pkg-grid');
+      if (parent) {
+        el.dataset.delay = Array.from(parent.children).indexOf(el) * 90;
+      }
+      revealObs.observe(el);
+    });
+
+    /* Stagger process items */
+    document.querySelectorAll('.pt-item').forEach((el, i) => {
+      el.dataset.delay = i * 120;
+    });
+
+    /* ── Scroll to top ── */
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ── Smooth scroll for jump pills ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ── Year ── */
+    const yr = document.getElementById('year');
+    if (yr) yr.textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

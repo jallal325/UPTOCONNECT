@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UP TO CONNECT — Merci !</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="Style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent:       #6C63FF;
+      --accent-soft:  rgba(108,99,255,.12);
+      --accent-mid:   rgba(108,99,255,.28);
+      --accent-light: #a599ff;
+      --surface:      #151f30;
+      --border:       #1e2d47;
+      --muted:        #8899b4;
+      --text:         #e2e8f0;
+      --bg-deep:      #0d1526;
+      --bg-mid:       #111827;
+      --success:      #10b981;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; }
+
+    /* ── NAV ── */
+    .nav-cta {
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      color: #fff !important;
+      padding: 9px 22px !important;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .88rem;
+      box-shadow: 0 4px 18px rgba(108,99,255,.35);
+      transition: box-shadow .25s, transform .2s !important;
+    }
+    .nav-cta:hover { box-shadow: 0 6px 24px rgba(108,99,255,.55) !important; transform: translateY(-2px); }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grid bg */
+    main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(108,99,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,.055) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+    }
+
+    /* Glow */
+    main::after {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(16,185,129,.1) 0%, rgba(108,99,255,.08) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── CARD ── */
+    .merci-card {
+      position: relative; z-index: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 56px 52px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 32px 80px rgba(0,0,0,.4);
+      animation: slideUp .6s cubic-bezier(.22,.68,0,1.2) both;
+    }
+    .merci-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #10b981, #6C63FF, #9c95ff);
+      border-radius: 24px 24px 0 0;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(32px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ── SUCCESS ICON ── */
+    .success-ring {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(16,185,129,.1);
+      border: 1px solid rgba(16,185,129,.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      animation: popIn .5s .3s cubic-bezier(.175,.885,.32,1.275) both;
+      position: relative;
+    }
+    .success-ring::after {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(16,185,129,.12);
+      animation: ripple 2s ease infinite;
+    }
+    @keyframes ripple {
+      0%   { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+    @keyframes popIn {
+      from { transform: scale(0) rotate(-15deg); opacity: 0; }
+      to   { transform: scale(1) rotate(0deg);   opacity: 1; }
+    }
+
+    .checkmark {
+      animation: drawCheck .4s .5s ease both;
+    }
+    @keyframes drawCheck {
+      from { stroke-dashoffset: 50; opacity: 0; }
+      to   { stroke-dashoffset: 0;  opacity: 1; }
+    }
+
+    /* ── TEXT ── */
+    .merci-tag {
+      display: inline-block;
+      background: rgba(16,185,129,.12);
+      border: 1px solid rgba(16,185,129,.25);
+      color: #6ee7b7;
+      font-size: .73rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 50px;
+      margin-bottom: 16px;
+      animation: fadeUp .4s .4s ease both;
+    }
+
+    .merci-card h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800; line-height: 1.15;
+      background: linear-gradient(135deg, #fff 30%, #a599ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 14px;
+      animation: fadeUp .4s .5s ease both;
+    }
+
+    .merci-card > p {
+      color: var(--muted); font-size: .97rem; line-height: 1.75;
+      max-width: 440px; margin: 0 auto 36px;
+      animation: fadeUp .4s .6s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TIMELINE STEPS ── */
+    .next-steps {
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      text-align: left;
+      animation: fadeUp .4s .7s ease both;
+    }
+    .next-steps-title {
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 18px;
+    }
+    .step-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-dot {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 800;
+    }
+    .step-dot.green  { background: rgba(16,185,129,.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,.3); }
+    .step-dot.purple { background: var(--accent-soft);   color: var(--accent-light); border: 1px solid var(--accent-mid); }
+    .step-dot.blue   { background: rgba(6,182,212,.12);  color: #67e8f9; border: 1px solid rgba(6,182,212,.25); }
+    .step-content h4 { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .step-content p  { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── BUTTONS ── */
+    .merci-actions {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp .4s .85s ease both;
+    }
+    .btn-home {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      color: #fff; font-family: 'DM Sans', sans-serif;
+      font-weight: 700; font-size: .92rem;
+      padding: 13px 28px; border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 6px 22px rgba(108,99,255,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-home:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(108,99,255,.55); }
+
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(37,211,102,.1);
+      border: 1px solid rgba(37,211,102,.28);
+      color: #6ee7b7; font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: .92rem;
+      padding: 13px 24px; border-radius: 12px;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .btn-wa:hover { background: rgba(37,211,102,.18); transform: translateY(-2px); }
+
+    /* ── COUNTDOWN ── */
+    .redirect-note {
+      margin-top: 28px;
+      color: var(--muted); font-size: .8rem;
+      animation: fadeUp .4s .95s ease both;
+    }
+    .redirect-note span { color: var(--accent-light); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-deep);
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+    }
+    footer .container {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    footer p { color: rgba(255,255,255,.4); font-size: .82rem; }
+    .footer-nav { display: flex; gap: 22px; }
+    .footer-nav a { color: var(--muted); font-size: .82rem; text-decoration: none; transition: color .2s; }
+    .footer-nav a:hover { color: var(--accent-light); }
+
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      display: flex; align-items: center; gap: 9px;
+      background: #25D366; color: #fff;
+      font-size: .87rem; font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      padding: 12px 20px 12px 15px; border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .wa-float:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(37,211,102,.6); color:#fff; }
+
+    @media (max-width: 560px) {
+      .merci-card { padding: 40px 28px 36px; }
+      .wa-float span { display: none; }
+      .wa-float { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container navbar">
+      <a class="brand" href="index.html">UP TO CONNECT</a>
+
+      <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-drawer" id="nav-drawer">
+        <a href="index.html">Accueil</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="merci-card">
+
+      <!-- Icon -->
+      <div class="success-ring">
+        <svg class="checkmark" width="36" height="36" viewBox="0 0 24 24" fill="none"
+             stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+             stroke-dasharray="50" stroke-dashoffset="50">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <!-- Tag + Title -->
+      <div class="merci-tag">Message reçu ✓</div>
+      <h1>Merci, on vous<br>rappelle sous 24h.</h1>
+      <p>
+        Votre demande a bien été transmise à notre équipe. Un expert UP TO CONNECT va analyser votre projet et vous contacter très prochainement.
+      </p>
+
+      <!-- What happens next -->
+      <div class="next-steps">
+        <div class="next-steps-title">Ce qui se passe maintenant</div>
+
+        <div class="step-row">
+          <div class="step-dot green">✓</div>
+          <div class="step-content">
+            <h4>Votre message est envoyé</h4>
+            <p>Notre équipe a reçu votre demande et va l'analyser dans les prochaines heures.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-dot purple">2</div>
+          <div class="step-content">
+            <h4>Prise de contact sous 24h</h4>
+            <p>Un expert vous appellera ou vous écrira par email pour affiner votre projet et répondre à vos questions.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-dot blue">3</div>
+          <div class="step-content">
+            <h4>Devis détaillé gratuit</h4>
+            <p>Après analyse, vous recevez une proposition complète — matériel, délais et tarifs tout inclus.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="merci-actions">
+        <a class="btn-home" href="index.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Retour à l'accueil
+        </a>
+        <a class="btn-wa" href="https://wa.me/212669272386?text=Bonjour%2C%20j%27ai%20soumis%20un%20formulaire%20de%20contact%20et%20je%20voulais%20confirmer." target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Confirmer sur WhatsApp
+        </a>
+      </div>
+
+      <!-- Auto-redirect countdown -->
+      <p class="redirect-note">
+        Redirection automatique vers l'accueil dans <span id="countdown">10</span> secondes…
+      </p>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> UP TO CONNECT — Tous droits réservés.</p>
+      <nav class="footer-nav">
+        <a href="index.html">Accueil</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a class="wa-float" href="https://wa.me/212669272386?text=Bonjour%2C%20j%27ai%20soumis%20une%20demande%20de%20devis." target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
+ <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Hamburger menu */
+  const hamburger = document.getElementById('hamburger');
+  const navDrawer = document.getElementById('nav-drawer');
+  if (hamburger && navDrawer) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navDrawer.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navDrawer.classList.remove('open');
+      }
+    });
+  }
+
+  /* --- FIXED REDIRECTION SCRIPT --- */
+  let seconds = 10;
+  // Use the ID "countdown" to match your HTML span
+  const countdownEl = document.getElementById('countdown'); 
+
+  const timer = setInterval(() => {
+    seconds--;
+    
+    // Update the text in the span
+    if (countdownEl) {
+      countdownEl.textContent = seconds;
+    }
+
+    // When time is up, redirect
+    if (seconds <= 0) {
+      clearInterval(timer);
+      window.location.href = "accueil.html"; 
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
