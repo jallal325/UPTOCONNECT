@@ -1,0 +1,1672 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UP TO CONNECT — Accueil</title>
+  <link rel="stylesheet" href="Style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── GLOBAL FONT OVERRIDE ── */
+    body, h1, h2, h3, h4, p, a, button {
+      font-family: Arial, sans-serif;
+    }
+    /* ── HOW IT WORKS — ELEVATED ── */
+.steps-section { background-color: #111827; padding: 90px 0; }
+
+.steps-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.step-block {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.step-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.step-bubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6C63FF, #9c95ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 6px rgba(108,99,255,.1), 0 8px 24px rgba(108,99,255,.3);
+  flex-shrink: 0;
+  transition: box-shadow .3s, transform .3s;
+}
+
+.step-block:hover .step-bubble {
+  box-shadow: 0 0 0 10px rgba(108,99,255,.15), 0 12px 32px rgba(108,99,255,.45);
+  transform: scale(1.08);
+}
+
+.step-line {
+  width: 2px;
+  flex: 1;
+  min-height: 48px;
+  background: linear-gradient(to bottom, rgba(108,99,255,.4), rgba(108,99,255,.05));
+  margin: 8px 0;
+}
+
+.step-card {
+  background: #151f30;
+  border: 1px solid #1e2d47;
+  border-radius: 16px;
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  flex: 1;
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+
+.step-block:hover .step-card {
+  border-color: rgba(108,99,255,.35);
+  box-shadow: 0 16px 48px rgba(0,0,0,.25);
+  transform: translateX(4px);
+}
+
+.step-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.step-badge {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #a599ff;
+  background: rgba(108,99,255,.12);
+  padding: 4px 10px;
+  border-radius: 50px;
+}
+
+.step-duration {
+  font-size: .78rem;
+  color: #8899b4;
+  font-weight: 500;
+}
+
+.step-card h4 {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  color: #8899b4;
+  font-size: .9rem;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.step-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.step-tags span {
+  font-size: .75rem;
+  color: #6a7d9f;
+  background: rgba(255,255,255,.04);
+  border: 1px solid #1e2d47;
+  padding: 4px 10px;
+  border-radius: 50px;
+}
+
+@media(max-width:600px) {
+  .step-block { gap: 16px; }
+  .step-card { padding: 22px 18px; }
+  .step-bubble { width: 42px; height: 42px; }
+}
+
+    /* ── NAV CTA BUTTON ── */
+    .nav-cta {
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      color: #fff !important;
+      padding: 9px 22px !important;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .88rem;
+      letter-spacing: .3px;
+      box-shadow: 0 4px 18px rgba(108,99,255,.35);
+      transition: box-shadow .25s, transform .2s !important;
+    }
+    .nav-cta:hover {
+      box-shadow: 0 6px 24px rgba(108,99,255,.55) !important;
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, #5a52e0, #8a83f5) !important;
+    }
+
+    /* ── CARD HOVER ── */
+    .card {
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      border: 1px solid #1e2d47;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .5s ease, transform .5s ease, border-color .25s, box-shadow .25s;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card:hover {
+      transform: translateY(-6px) !important;
+      border-color: rgba(108,99,255,.5);
+      box-shadow: 0 20px 48px rgba(108,99,255,.15);
+    }
+
+    /* ── HERO BADGE ── */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(108,99,255,.15);
+      border: 1px solid rgba(108,99,255,.35);
+      border-radius: 50px;
+      padding: 6px 16px;
+      color: #a599ff;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+      animation: fadeInDown .6s ease both;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      background: #6C63FF;
+      border-radius: 50%;
+      animation: pulse-dot 1.8s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.7); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps-section { background-color: #111827; padding: 80px 0; }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      background: #151f30;
+      border: 1px solid #1e2d47;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .step {
+      padding: 40px 28px;
+      text-align: center;
+      border-right: 1px solid #1e2d47;
+      position: relative;
+      transition: background .25s;
+    }
+    .step:hover { background: rgba(108,99,255,.05); }
+    .step:last-child { border-right: none; }
+    .step-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6C63FF, #9c95ff);
+      color: #fff;
+      font-size: 1.1rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+      box-shadow: 0 6px 20px rgba(108,99,255,.4);
+    }
+    .step h4 { color: #fff; margin-bottom: 8px; font-size: 1rem; font-weight: 600; }
+    .step p { color: #8899b4; font-size: .88rem; line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { padding: 80px 0; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+    .testimonial-card {
+      background: #151f30;
+      border: 1px solid #1e2d47;
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s ease, transform .5s ease, border-color .25s, box-shadow .25s;
+    }
+    .testimonial-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .testimonial-card:hover {
+      border-color: rgba(108,99,255,.4);
+      transform: translateY(-4px) !important;
+      box-shadow: 0 14px 36px rgba(0,0,0,.25);
+    }
+    .stars { color: #fbbf24; font-size: .9rem; letter-spacing: 3px; margin-bottom: 16px; }
+    .testimonial-card p { color: #8899b4; font-size: .93rem; line-height: 1.75; margin-bottom: 24px; font-style: italic; }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #6C63FF, #ff6b6b);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #fff; font-size: .88rem; flex-shrink: 0;
+    }
+    .t-name { color: #e2e8f0; font-weight: 600; font-size: .92rem; }
+    .t-role { color: #8899b4; font-size: .8rem; margin-top: 2px; }
+
+    /* ── SECTION TAG ── */
+    .section-tag {
+      display: inline-block;
+      background: rgba(108,99,255,.12);
+      color: #a599ff; font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
+    }
+
+    /* ── PARTNERS / SECTORS ── */
+    .partners-section {
+      background: #111827;
+      padding: 55px 0;
+      border-top: 1px solid #1e2d47;
+      border-bottom: 1px solid #1e2d47;
+    }
+    .partners-label {
+      text-align: center; color: #8899b4;
+      font-size: .75rem; letter-spacing: 2.5px;
+      text-transform: uppercase; margin-bottom: 34px;
+    }
+    .partners-row {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 14px;
+    }
+    .partner-chip {
+      background: #151f30; border: 1px solid #1e2d47;
+      color: #8899b4; font-size: .87rem;
+      padding: 10px 22px; border-radius: 50px;
+      transition: border-color .2s, color .2s, background .2s;
+      cursor: default;
+    }
+    .partner-chip:hover { border-color: #6C63FF; color: #a599ff; background: rgba(108,99,255,.07); }
+
+    /* ── BRAND LOGOS STRIP ── */
+    .brands-section {
+      padding: 52px 0;
+      background: #0d1526;
+      border-bottom: 1px solid #1e2d47;
+    }
+    .brands-label {
+      text-align: center; color: #8899b4;
+      font-size: .75rem; letter-spacing: 2.5px;
+      text-transform: uppercase; margin-bottom: 32px;
+    }
+    .brands-row {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 12px; align-items: center;
+    }
+    .brand-badge {
+      background: #151f30;
+      border: 1px solid #1e2d47;
+      border-radius: 10px;
+      padding: 12px 26px;
+      color: #6a7d9f;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: border-color .2s, color .2s;
+    }
+    .brand-badge:hover { border-color: rgba(108,99,255,.4); color: #a599ff; }
+
+    /* ── PORTFOLIO / RÉALISATIONS ── */
+    .portfolio-section {
+      padding: 80px 0;
+      background: #0d1526;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .portfolio-card {
+      background: #151f30;
+      border: 1px solid #1e2d47;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .portfolio-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px) !important;
+      border-color: rgba(108,99,255,.45);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    }
+    .portfolio-thumb {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .portfolio-thumb svg { opacity: .65; transition: opacity .3s, transform .3s; }
+    .portfolio-card:hover .portfolio-thumb svg { opacity: 1; transform: scale(1.05); }
+    .portfolio-thumb-overlay {
+      position: absolute; inset: 0;
+      opacity: .06;
+      background-size: 28px 28px;
+    }
+    .pt-blue  { background: linear-gradient(135deg, #0f1d35, #1a2d50); }
+    .pt-indigo { background: linear-gradient(135deg, #110f30, #1e1b50); }
+    .pt-teal  { background: linear-gradient(135deg, #0c2030, #0d3040); }
+    .pt-green { background: linear-gradient(135deg, #0b2218, #0e3322); }
+    .pt-red   { background: linear-gradient(135deg, #2a0f14, #3e1320); }
+    .pt-orange { background: linear-gradient(135deg, #2a1800, #3a2200); }
+
+    .portfolio-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: rgba(108,99,255,.2);
+      border: 1px solid rgba(108,99,255,.3);
+      color: #a599ff; font-size: .72rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 50px;
+    }
+    .portfolio-body { padding: 22px 24px 26px; }
+    .portfolio-body h4 { color: #e2e8f0; font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .portfolio-body p { color: #8899b4; font-size: .87rem; line-height: 1.65; margin-bottom: 16px; }
+    .portfolio-meta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .portfolio-tag {
+      display: flex; align-items: center; gap: 5px;
+      color: #6a7d9f; font-size: .78rem;
+    }
+    .portfolio-tag span { color: #a599ff; }
+
+    /* ── FAQ ── */
+    .faq-section { padding: 80px 0; background: #111827; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: #151f30; border: 1px solid #1e2d47;
+      border-radius: 12px; overflow: hidden;
+    }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      color: #e2e8f0; font-size: .97rem; font-weight: 500;
+      padding: 20px 24px; text-align: left; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; font-family: 'Sora', sans-serif;
+    }
+    .faq-question:hover { color: #a599ff; }
+    .faq-icon { color: #6C63FF; font-size: 1.3rem; transition: transform .3s; flex-shrink: 0; line-height: 1; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      color: #8899b4; font-size: .92rem; line-height: 1.75;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-answer { max-height: 220px; padding: 0 24px 22px; }
+
+    /* ── STATS BAR ── */
+    /* ── STATS BAR — ELEVATED ── */
+.stats-bar {
+  background: linear-gradient(135deg, #0d1526 0%, #111827 50%, #0d1526 100%);
+  padding: 60px 0;
+  border-top: 1px solid #1e2d47;
+  border-bottom: 1px solid #1e2d47;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(108,99,255,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.stats-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 24px;
+  position: relative;
+  border-right: 1px solid #1e2d47;
+  transition: background .3s;
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-item:hover {
+  background: rgba(108,99,255,.04);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid #1e2d47;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: border-color .3s, background .3s;
+}
+
+.stat-item:hover .stat-icon {
+  background: rgba(108,99,255,.08);
+  border-color: rgba(108,99,255,.3);
+}
+
+.stat-num {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+  background: linear-gradient(135deg, #ffffff, #a599ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  color: #8899b4;
+  font-size: .85rem;
+  font-weight: 500;
+  margin: 0 0 16px;
+  letter-spacing: .3px;
+}
+
+.stat-bar-line {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: #6C63FF;
+  opacity: .7;
+  transition: width .3s, opacity .3s;
+}
+
+.stat-item:hover .stat-bar-line {
+  width: 48px;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(1),
+  .stat-item:nth-child(2) {
+    border-bottom: 1px solid #1e2d47;
+  }
+}
+
+@media (max-width: 400px) {
+  .stats-inner { grid-template-columns: 1fr; }
+  .stat-item { border-right: none; border-bottom: 1px solid #1e2d47; }
+  .stat-item:last-child { border-bottom: none; }
+}
+    .stat-label { color: #a0aec0; margin: 6px 0 0 0; font-size: .95rem; }
+
+    /* ── FLOATING WHATSAPP ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 999;
+      display: flex; align-items: center; gap: 10px;
+      background: #25D366;
+      color: #fff;
+      font-size: .88rem; font-weight: 600;
+      padding: 13px 20px 13px 16px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
+      transition: box-shadow .25s, transform .25s;
+      animation: float-in .5s .8s both;
+    }
+    .whatsapp-float:hover {
+      box-shadow: 0 10px 32px rgba(37,211,102,.6);
+      transform: translateY(-3px);
+      color: #fff;
+    }
+    .whatsapp-float svg { flex-shrink: 0; }
+    @keyframes float-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SCROLL TO TOP ── */
+    #scroll-top {
+      position: fixed; bottom: 28px; left: 28px;
+      z-index: 998;
+      width: 44px; height: 44px;
+      background: #151f30; border: 1px solid #1e2d47;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .3s, border-color .25s;
+      color: #6C63FF;
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: all; }
+    #scroll-top:hover { border-color: #6C63FF; transform: translateY(-3px); }
+
+    /* ── FOOTER FIX ── */
+    .footer-links li { line-height: 1.7 !important; display: block !important; }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width:700px) {
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .step { border-right: none; border-bottom: 1px solid #1e2d47; }
+      .step:last-child { border-bottom: none; }
+      .whatsapp-float span { display: none; }
+      .whatsapp-float { padding: 13px; }
+    }
+    @media(max-width:480px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+    /* ── HERO CANVAS ── */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(ellipse at 60% 40%, #0f1d3a 0%, #080d1a 60%, #050810 100%);
+}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+ <header>
+  <div class="container navbar">
+    <a class="brand" href="index.html">UP TO CONNECT</a>
+
+    <!-- Desktop nav -->
+    <nav class="nav">
+      <a class="active" href="index.html">Accueil</a>
+      <a href="service.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Hamburger button — MOBILE ONLY -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Mobile drawer -->
+    <nav class="nav-drawer" id="nav-drawer">
+      <a class="active" href="index.html">Accueil</a>
+      <a href="service.html">Services</a>
+      <a href="contact.html">Contact</a>
+     
+    </nav>
+
+  </div>
+</header>
+
+  <main>
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Disponible au Maroc · Devis sous 24h
+    </div>
+    <h1>Solutions IT & Sécurité pour entreprises et particuliers</h1>
+    <p>
+      UP TO CONNECT vous accompagne en réseaux, sécurité, vidéosurveillance et solutions audiovisuelles — visioconférence, tableaux interactifs, affichage dynamique.
+    </p>
+    <div class="buttons">
+      <a class="btn" href="service.html">Découvrir nos services</a>
+      <a class="btn" href="contact.html" style="background:transparent; border:1px solid rgba(255,255,255,.25); color:#e2e8f0;">Audit gratuit →</a>
+    </div>
+  </div>
+</section>
+
+    <!-- ─── SERVICES CARDS ─── -->
+   <!-- ─── SERVICES SECTION — ELEVATED ─── -->
+<section class="services-section">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="section-tag">Nos services</span>
+      <h2 class="gradient-text">Ce que nous faisons</h2>
+      <p class="muted">Des solutions complètes, de l'installation au support continu.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="svc-el-card" style="--accent:#6C63FF; --accent-bg:rgba(108,99,255,.08);">
+        <div class="svc-el-glow"></div>
+        <div class="svc-el-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14"/>
+            <rect x="2" y="7" width="13" height="10" rx="2"/>
+            <circle cx="8.5" cy="12" r="1.5" fill="#6C63FF" stroke="none"/>
+          </svg>
+        </div>
+        <div class="svc-el-label">Audiovisuel</div>
+        <h3>Visioconférence</h3>
+        <p>Installation de salles HD avec caméra panoramique, micro anti-bruit et configuration Zoom / Teams / Meet.</p>
+        <a class="svc-el-link" href="service.html">
+          Voir le service
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="svc-el-card" style="--accent:#8B5CF6; --accent-bg:rgba(139,92,246,.08);">
+        <div class="svc-el-glow"></div>
+        <div class="svc-el-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="15" rx="2"/>
+            <path d="M8 10h8M8 13h5"/>
+            <circle cx="17" cy="13" r="1.5" fill="#8B5CF6" stroke="none"/>
+            <path d="M8 21h8M12 18v3"/>
+          </svg>
+        </div>
+        <div class="svc-el-label">Audiovisuel</div>
+        <h3>Tableaux interactifs</h3>
+        <p>Écrans tactiles 4K de 65" à 110" pour salles de classe, formations et salles de conseil.</p>
+        <a class="svc-el-link" href="service.html">
+          Voir le service
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="svc-el-card" style="--accent:#F59E0B; --accent-bg:rgba(245,158,11,.08);">
+        <div class="svc-el-glow"></div>
+        <div class="svc-el-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="13" rx="2"/>
+            <polygon points="10 8 16 11 10 14 10 8" fill="#F59E0B" stroke="#F59E0B"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <div class="svc-el-label">Audiovisuel</div>
+        <h3>Affichage dynamique</h3>
+        <p>Réseau d'écrans connectés pour vos contenus publicitaires, gérés à distance depuis une interface web.</p>
+        <a class="svc-el-link" href="service.html">
+          Voir le service
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="svc-el-card" style="--accent:#38BDF8; --accent-bg:rgba(56,189,248,.08);">
+        <div class="svc-el-glow"></div>
+        <div class="svc-el-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.55a11 11 0 0114.08 0"/>
+            <path d="M1.42 9a16 16 0 0121.16 0"/>
+            <path d="M8.53 16.11a6 6 0 016.95 0"/>
+            <circle cx="12" cy="20" r="1" fill="#38BDF8" stroke="none"/>
+          </svg>
+        </div>
+        <div class="svc-el-label">Réseaux</div>
+        <h3>Réseaux & Wi-Fi</h3>
+        <p>Conception, câblage structuré, déploiement Wi-Fi et configuration de firewalls pour toute taille d'entreprise.</p>
+        <a class="svc-el-link" href="service.html">
+          Voir le service
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="svc-el-card" style="--accent:#EF4444; --accent-bg:rgba(239,68,68,.08);">
+        <div class="svc-el-glow"></div>
+        <div class="svc-el-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+            <circle cx="12" cy="13" r="1.5" fill="#EF4444" stroke="none"/>
+          </svg>
+        </div>
+        <div class="svc-el-label">Sécurité</div>
+        <h3>Vidéosurveillance CCTV</h3>
+        <p>Caméras IP 4K avec accès mobile sécurisé, détection IA et stockage jusqu'à 90 jours.</p>
+        <a class="svc-el-link" href="service.html">
+          Voir le service
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="svc-el-card" style="--accent:#10B981; --accent-bg:rgba(16,185,129,.08);">
+        <div class="svc-el-glow"></div>
+        <div class="svc-el-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div class="svc-el-label">Support</div>
+        <h3>Support & Maintenance</h3>
+        <p>Contrats mensuels ou annuels avec visites préventives, assistance prioritaire et intervention sous 4h.</p>
+        <a class="svc-el-link" href="service.html">
+          Voir le service
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="center">
+      <a class="classes" href="service.html">Voir tous nos services →</a>
+    </div>
+  </div>
+</section>
+    <!-- ─── HOW IT WORKS ─── -->
+    <!-- ─── HOW IT WORKS ─── -->
+<section class="steps-section">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:64px;" class="reveal">
+      <span class="section-tag">Notre processus</span>
+      <h2 class="gradient-text">Comment ça fonctionne ?</h2>
+      <p class="muted">De la prise de contact jusqu'au support — simple et transparent.</p>
+    </div>
+
+    <div class="steps-timeline">
+
+      <!-- Step 1 -->
+      <div class="step-block reveal">
+        <div class="step-connector">
+          <div class="step-bubble">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-card">
+          <div class="step-card-header">
+            <span class="step-badge">Étape 01</span>
+            <span class="step-duration">Gratuit · 30 min</span>
+          </div>
+          <h4>Analyse des besoins</h4>
+          <p>On étudie votre infrastructure et vos objectifs lors d'un audit gratuit — en présentiel ou à distance selon votre convenance.</p>
+          <div class="step-tags">
+            <span>Audit sur site</span>
+            <span>Sans engagement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-block reveal">
+        <div class="step-connector">
+          <div class="step-bubble" style="background: linear-gradient(135deg, #10B981, #34d399);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-card">
+          <div class="step-card-header">
+            <span class="step-badge" style="color:#34d399; background:rgba(16,185,129,.12);">Étape 02</span>
+            <span class="step-duration">Sous 24h</span>
+          </div>
+          <h4>Devis sur mesure</h4>
+          <p>Vous recevez une proposition détaillée et chiffrée, adaptée à votre budget et vos priorités — zéro ligne floue.</p>
+          <div class="step-tags">
+            <span>Chiffré & détaillé</span>
+            <span>Adapté au budget</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-block reveal">
+        <div class="step-connector">
+          <div class="step-bubble" style="background: linear-gradient(135deg, #F59E0B, #fbbf24);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-card">
+          <div class="step-card-header">
+            <span class="step-badge" style="color:#fbbf24; background:rgba(245,158,11,.12);">Étape 03</span>
+            <span class="step-duration">1 à 5 jours</span>
+          </div>
+          <h4>Installation professionnelle</h4>
+          <p>Déploiement rapide par notre équipe certifiée, sans perturber votre activité. Formation de vos équipes incluse à la fin de chaque projet.</p>
+          <div class="step-tags">
+            <span>Équipe certifiée</span>
+            <span>Formation incluse</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-block reveal">
+        <div class="step-connector">
+          <div class="step-bubble" style="background: linear-gradient(135deg, #6366F1, #818cf8);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <!-- no line after last step -->
+        </div>
+        <div class="step-card">
+          <div class="step-card-header">
+            <span class="step-badge" style="color:#818cf8; background:rgba(99,102,241,.12);">Étape 04</span>
+            <span class="step-duration">24h/24 · 7j/7</span>
+          </div>
+          <h4>Suivi & Support continu</h4>
+          <p>On reste disponibles après l'installation — par WhatsApp à toute heure. Pas de ticket, pas d'attente : une vraie personne qui connaît votre projet.</p>
+          <div class="step-tags">
+            <span>WhatsApp direct</span>
+            <span>Support garanti</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ─── WHY US ─── -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:40px;" class="reveal">
+          <span class="section-tag">Nos atouts</span>
+          <h2 class="gradient-text">Pourquoi nous choisir ?</h2>
+          <p class="muted">Rapides, fiables et à l'écoute de vos besoins.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+  <h3 style="display:flex; align-items:center; gap:9px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#FDE68A" stroke="#F59E0B"/>
+    </svg>
+    Réactivité
+  </h3>
+  <p class="muted">Intervention rapide sur site ou à distance, souvent le jour même.</p>
+</div>
+
+<div class="card">
+  <h3 style="display:flex; align-items:center; gap:9px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" fill="#EEF2FF" stroke="#6C63FF"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+    Sécurité
+  </h3>
+  <p class="muted">Solutions certifiées pour protéger vos données et vos locaux.</p>
+</div>
+
+<div class="card">
+  <h3 style="display:flex; align-items:center; gap:9px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+    </svg>
+    Expertise
+  </h3>
+  <p class="muted">Une équipe qualifiée avec des années d'expérience terrain.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── STATS BAR ─── -->
+   <section class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <p class="stat-num" data-target="100" data-suffix="+">0</p>
+        <p class="stat-label">Clients accompagnés</p>
+        <div class="stat-bar-line"></div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <p class="stat-num" data-target="6" data-suffix=" ans">0</p>
+        <p class="stat-label">d'expérience</p>
+        <div class="stat-bar-line" style="background:#10B981;"></div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <p class="stat-num" data-target="98" data-suffix="%">0</p>
+        <p class="stat-label">de satisfaction</p>
+        <div class="stat-bar-line" style="background:#F59E0B;"></div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <p class="stat-num" data-static="24h/24">12h/24</p>
+        <p class="stat-label">Support disponible</p>
+        <div class="stat-bar-line" style="background:#38BDF8;"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ─── BRAND LOGOS STRIP ─── -->
+    <section class="brands-section">
+      <div class="container">
+        <p class="brands-label">Marques que nous installons</p>
+        <div class="brands-row">
+          <div class="brand-badge">Cisco</div>
+          <div class="brand-badge">Ubiquiti</div>
+          <div class="brand-badge">Hikvision</div>
+          <div class="brand-badge">Dahua</div>
+          <div class="brand-badge">Poly</div>
+          <div class="brand-badge">Logitech</div>
+          <div class="brand-badge">Cambium</div>
+          <div class="brand-badge">Hanwha</div>
+          <div class="brand-badge">Yealink</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PORTFOLIO / RÉALISATIONS ─── -->
+    <section class="portfolio-section">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:44px;" class="reveal">
+          <span class="section-tag">Réalisations</span>
+          <h2 class="gradient-text">Quelques projets récents</h2>
+          <p class="muted">Des installations réelles, des résultats concrets.</p>
+        </div>
+        <div class="portfolio-grid">
+
+          <div class="portfolio-card">
+            <div class="portfolio-thumb pt-indigo">
+              <div class="portfolio-thumb-overlay" style="background-image: radial-gradient(#6C63FF 1px, transparent 1px);"></div>
+              <span class="portfolio-badge">Visioconférence</span>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14"/>
+                <rect x="2" y="7" width="13" height="10" rx="2"/>
+              </svg>
+            </div>
+            <div class="portfolio-body">
+              <h4>Salle de réunion — Cabinet d'architectes</h4>
+              <p>Déploiement d'un système Poly Sync 60 + écran 75" + caméra panoramique pour une salle de 20 personnes à Casablanca.</p>
+              <div class="portfolio-meta">
+                <div class="portfolio-tag"><span>📍</span> Casablanca</div>
+                <div class="portfolio-tag"><span>⏱</span> 2 jours</div>
+                <div class="portfolio-tag"><span>✅</span> Zoom + Teams</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-card">
+            <div class="portfolio-thumb pt-blue">
+              <div class="portfolio-thumb-overlay" style="background-image: radial-gradient(#3b82f6 1px, transparent 1px);"></div>
+              <span class="portfolio-badge">Réseau Wi-Fi</span>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0114.08 0"/>
+                <path d="M1.42 9a16 16 0 0121.16 0"/>
+                <path d="M8.53 16.11a6 6 0 016.95 0"/>
+                <circle cx="12" cy="20" r="1" fill="#3b82f6" stroke="none"/>
+              </svg>
+            </div>
+            <div class="portfolio-body">
+              <h4>Infrastructure Wi-Fi — Société de distribution</h4>
+              <p>Couverture totale de 3 étages avec points d'accès Ubiquiti UniFi, VLANs séparés et firewall configuré.</p>
+              <div class="portfolio-meta">
+                <div class="portfolio-tag"><span>📍</span> Casablanca</div>
+                <div class="portfolio-tag"><span>⏱</span> 1 journée</div>
+                <div class="portfolio-tag"><span>✅</span> Ubiquiti UniFi</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-card">
+            <div class="portfolio-thumb pt-green">
+              <div class="portfolio-thumb-overlay" style="background-image: radial-gradient(#10b981 1px, transparent 1px);"></div>
+              <span class="portfolio-badge">Tableaux interactifs</span>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="15" rx="2"/>
+                <path d="M8 10h8M8 13h5"/>
+                <path d="M8 21h8M12 18v3"/>
+              </svg>
+            </div>
+            <div class="portfolio-body">
+              <h4>École privée — 8 salles de classe équipées</h4>
+              <p>Installation de tableaux interactifs 86" avec formation complète des enseignants et logiciels pédagogiques configurés.</p>
+              <div class="portfolio-meta">
+                <div class="portfolio-tag"><span>📍</span> Rabat</div>
+                <div class="portfolio-tag"><span>⏱</span> 4 jours</div>
+                <div class="portfolio-tag"><span>✅</span> 8 salles</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-card">
+            <div class="portfolio-thumb pt-red">
+              <div class="portfolio-thumb-overlay" style="background-image: radial-gradient(#ef4444 1px, transparent 1px);"></div>
+              <span class="portfolio-badge">Vidéosurveillance</span>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <div class="portfolio-body">
+              <h4>Système CCTV — Clinique médicale</h4>
+              <p>32 caméras Hikvision 4K avec enregistrement 30 jours, accès mobile sécurisé et intégration au contrôle d'accès.</p>
+              <div class="portfolio-meta">
+                <div class="portfolio-tag"><span>📍</span> Casablanca</div>
+                <div class="portfolio-tag"><span>⏱</span> 3 jours</div>
+                <div class="portfolio-tag"><span>✅</span> 32 caméras</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-card">
+            <div class="portfolio-thumb pt-orange">
+              <div class="portfolio-thumb-overlay" style="background-image: radial-gradient(#f97316 1px, transparent 1px);"></div>
+              <span class="portfolio-badge">Affichage dynamique</span>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="13" rx="2"/>
+                <path d="M6 20h12M9 17v3M15 17v3"/>
+              </svg>
+            </div>
+            <div class="portfolio-body">
+              <h4>Affichage dynamique — Hôtel 4 étoiles</h4>
+              <p>Réseau de 12 écrans dans le hall et les couloirs, gestion centralisée du contenu promotionnel en temps réel.</p>
+              <div class="portfolio-meta">
+                <div class="portfolio-tag"><span>📍</span> Marrakech</div>
+                <div class="portfolio-tag"><span>⏱</span> 2 jours</div>
+                <div class="portfolio-tag"><span>✅</span> 12 écrans</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-card">
+            <div class="portfolio-thumb pt-teal">
+              <div class="portfolio-thumb-overlay" style="background-image: radial-gradient(#06b6d4 1px, transparent 1px);"></div>
+              <span class="portfolio-badge">Réseau complet</span>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="6" height="6" rx="1"/>
+                <rect x="16" y="2" width="6" height="6" rx="1"/>
+                <rect x="9" y="16" width="6" height="6" rx="1"/>
+                <path d="M5 8v3a2 2 0 002 2h10a2 2 0 002-2V8M12 14v2"/>
+              </svg>
+            </div>
+            <div class="portfolio-body">
+              <h4>Infrastructure réseau — Administration publique</h4>
+              <p>Câblage structuré cat6A, switch core Cisco, firewall et architecture redondante pour 150 postes de travail.</p>
+              <div class="portfolio-meta">
+                <div class="portfolio-tag"><span>📍</span> Rabat</div>
+                <div class="portfolio-tag"><span>⏱</span> 5 jours</div>
+                <div class="portfolio-tag"><span>✅</span> 150 postes</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TESTIMONIALS ─── -->
+    <!-- ─── ENGAGEMENTS ─── -->
+<section class="testimonials-section">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:44px;" class="reveal">
+      <span class="section-tag">Nos engagements</span>
+      <h2 class="gradient-text">Ce que nous vous garantissons</h2>
+      <p class="muted">Pas de promesses vagues — des engagements concrets sur chaque projet.</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div style="margin-bottom:18px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <p style="font-style:normal; color:#e2e8f0; font-size:1.05rem; font-weight:600; margin-bottom:10px;">Devis sous 24h, toujours</p>
+        <p>Après votre demande, vous recevez une proposition détaillée et chiffrée dans les 24 heures — sans relance nécessaire de votre côté.</p>
+        <div style="margin-top:22px; padding-top:18px; border-top:1px solid #1e2d47; display:flex; align-items:center; gap:10px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:#6C63FF; flex-shrink:0;"></div>
+          <span style="color:#a599ff; font-size:.82rem; font-weight:600;">Gratuit · Sans engagement</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div style="margin-bottom:18px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <p style="font-style:normal; color:#e2e8f0; font-size:1.05rem; font-weight:600; margin-bottom:10px;">Installation propre, sans surprise</p>
+        <p>Chaque intervention est planifiée pour ne pas perturber votre activité. On repart en laissant tout propre, câblé et fonctionnel — et on forme vos équipes sur place.</p>
+        <div style="margin-top:22px; padding-top:18px; border-top:1px solid #1e2d47; display:flex; align-items:center; gap:10px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:#10B981; flex-shrink:0;"></div>
+          <span style="color:#6ee7b7; font-size:.82rem; font-weight:600;">Formation incluse · Documentation fournie</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div style="margin-bottom:18px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.59 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006.29 6.29l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <p style="font-style:normal; color:#e2e8f0; font-size:1.05rem; font-weight:600; margin-bottom:10px;">Support disponible 24h/24</p>
+        <p>Un problème après installation ? Vous nous joignez directement sur WhatsApp à toute heure. Pas de hotline, pas d'attente — une personne réelle qui connaît votre projet.</p>
+        <div style="margin-top:22px; padding-top:18px; border-top:1px solid #1e2d47; display:flex; align-items:center; gap:10px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:#F59E0B; flex-shrink:0;"></div>
+          <span style="color:#fcd34d; font-size:.82rem; font-weight:600;">WhatsApp · 7j/7 · Tout le Maroc</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Early adopter strip -->
+    <div class="reveal" style="margin-top:44px; background:#151f30; border:1px solid rgba(108,99,255,.25); border-radius:16px; padding:32px 36px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+      <div>
+       <p style="color:#e2e8f0; font-size:1rem; font-weight:600; margin:0 0 6px; display:flex; align-items:center; gap:8px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+    <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+  </svg>
+  Nous démarrons — soyez parmi nos premiers clients
+</p>
+        <p style="color:#8899b4; font-size:.88rem; margin:0;">Tarifs de lancement préférentiels pour les projets lancés avant fin 2026.</p>
+      </div>
+      <a class="btn" href="contact.html" style="white-space:nowrap; flex-shrink:0;">Profiter de l'offre →</a>
+    </div>
+
+  </div>
+</section>
+    <!-- ─── PARTNERS / SECTORS ─── -->
+    <div class="partners-section">
+      <div class="container">
+        <p class="partners-label" style="font-size: 16px;">Secteurs que nous accompagnons</p>
+        <div class="partners-row">
+          <div class="partner-chip">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+    <polyline points="9 22 9 12 15 12 15 22"/>
+    <line x1="12" y1="2" x2="12" y2="6"/>
+    <line x1="8" y1="9" x2="8" y2="9.01" stroke-width="3"/>
+    <line x1="16" y1="9" x2="16" y2="9.01" stroke-width="3"/>
+  </svg>
+  Écoles & Universités
+</div>
+
+<div class="partner-chip">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2"/>
+    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+    <line x1="12" y1="12" x2="12" y2="16"/>
+    <line x1="10" y1="14" x2="14" y2="14"/>
+  </svg>
+  PME & Grandes entreprises
+</div>
+
+<div class="partner-chip">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+  </svg>
+  Cliniques & Santé
+</div>
+
+<div class="partner-chip">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FB923C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+    <rect x="9" y="13" width="6" height="8"/>
+    <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="3"/>
+    <line x1="15" y1="9" x2="15" y2="9.01" stroke-width="3"/>
+    <line x1="12" y1="9" x2="12" y2="9.01" stroke-width="3"/>
+  </svg>
+  Hôtels & Hôtellerie
+</div>
+
+<div class="partner-chip">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="22" x2="21" y2="22"/>
+    <line x1="6" y1="18" x2="6" y2="11"/>
+    <line x1="10" y1="18" x2="10" y2="11"/>
+    <line x1="14" y1="18" x2="14" y2="11"/>
+    <line x1="18" y1="18" x2="18" y2="11"/>
+    <polygon points="12 2 20 7 4 7"/>
+  </svg>
+  Administrations
+</div>
+
+<div class="partner-chip">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <path d="M16 10a4 4 0 0 1-8 0"/>
+  </svg>
+  Commerce & Retail
+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── FAQ ─── -->
+    <section class="faq-section">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:44px;" class="reveal">
+          <span class="section-tag">FAQ</span>
+          <h2 class="gradient-text">Questions fréquentes</h2>
+          <p class="muted">Tout ce que vous devez savoir avant de nous contacter.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              Intervenez-vous hors de Casablanca ?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Oui, nous intervenons dans tout le Maroc. Pour les projets hors de Casablanca, nous établissons un planning d'intervention adapté à vos contraintes.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Quels sont les délais d'installation habituels ?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Les délais varient selon le projet. Une installation simple (Wi-Fi, caméra) se fait généralement en 1 journée. Un projet complet de salle de réunion ou réseau d'entreprise prend entre 2 et 5 jours ouvrables.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Proposez-vous des contrats de maintenance ?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Oui, nous proposons des contrats de maintenance mensuels ou annuels incluant des visites préventives, un support téléphonique prioritaire et des interventions d'urgence sous 4h.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Le devis est-il vraiment gratuit ?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Absolument. L'audit et le devis sont 100% gratuits et sans engagement. Nous vous remettons une proposition détaillée sous 24h après notre première analyse.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Quelles marques installez-vous ?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Nous travaillons avec les grandes marques du marché : Cisco, Ubiquiti, Hikvision, Dahua, Poly, Logitech, Yealink et bien d'autres — toujours en fonction de votre budget et de vos besoins.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Proposez-vous la formation des utilisateurs ?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Oui, chaque installation inclut une formation pratique de vos équipes sur site. Nous fournissons également une documentation personnalisée et restons disponibles par téléphone pour toute question post-installation.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CTA FINAL ─── -->
+    <section class="section">
+      <div class="container" style="text-align:center;">
+        <div class="reveal">
+          <span class="section-tag">Commençons</span>
+          <h2>Prêt à moderniser votre infrastructure ?</h2>
+          <p class="muted" style="max-width:520px; margin: 12px auto 28px;">Contactez-nous dès aujourd'hui. Audit gratuit, devis sous 24h, installation rapide et support garanti.</p>
+          <div class="buttons" style="justify-content:center;">
+            <a class="btn" href="contact.html">Demander un devis gratuit</a>
+            <a href="tel:+212669272386" style="color:#a599ff; font-size:.92rem; align-self:center; text-decoration:none; display:inline-flex; align-items:center; gap:7px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+  +212 6 69 272 386
+</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3 class="brand" style="font-size: 26px;">UP TO CONNECT</h3>
+        <p class="footer-desc">Votre partenaire de confiance en solutions IT, sécurité et audiovisuel pour entreprises et particuliers au Maroc.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Liens rapides</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+212669272386">+212 6 69 272 386</a></li>
+          <li><a href="mailto:contact@uptoconnect.ma">contact@uptoconnect.ma</a></li>
+          <li>Casablanca, Maroc</li>
+        </ul>
+        <div class="footer-socials">
+          <a target="_blank" href="https://www.linkedin.com/in/hamza-jallal/">LinkedIn</a>
+          <a target="_blank" href="https://www.instagram.com/uptoconnect?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="color: rgba(255,255,255,.75);">© 2026 UP TO CONNECT — Tous droits réservés - Designed by <strong> <a href="https://www.linkedin.com/in/jamal-jallal-153ab0256/" style="text-decoration: none; color: rgba(255,255,255,.75);">JAMAL JALLAL</a></strong></p>
+    </div>
+  </footer>
+
+  <!-- ─── FLOATING WHATSAPP ─── -->
+  <a class="whatsapp-float" href="https://wa.me/212669272386?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20projet%20IT." target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- ─── SCROLL TO TOP ─── -->
+  <button id="scroll-top" aria-label="Retour en haut">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script>
+    
+    /* ── FAQ accordion ── */
+  /* ── Hamburger menu ── */
+const hamburger = document.getElementById('hamburger');
+const navDrawer = document.getElementById('nav-drawer');
+
+if (hamburger && navDrawer) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navDrawer.classList.toggle('open');
+  });
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navDrawer.classList.remove('open');
+    }
+  });
+}
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    /* ── Scroll reveal ── */
+    const revealTargets = document.querySelectorAll('.reveal, .card, .svc-el-card, .testimonial-card, .portfolio-card');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, entry.target.dataset.delay || 0);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealTargets.forEach((el, i) => {
+      const group = el.closest('.grid, .portfolio-grid, .testimonials-grid');
+      if (group) {
+        const siblings = Array.from(group.children);
+        el.dataset.delay = siblings.indexOf(el) * 80;
+      }
+      revealObserver.observe(el);
+    });
+
+    /* ── Animated counters ── */
+    const statNums = document.querySelectorAll('.stat-num[data-target]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = +el.dataset.target;
+          const suffix = el.dataset.suffix || '';
+          let current = 0;
+          const step = target / 50;
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = Math.floor(current) + suffix;
+          }, 28);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(el => counterObserver.observe(el));
+
+    /* ── Scroll to top ── */
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    
+/* ── NETWORK CANVAS HERO ── */
+(function () {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const COLORS = {
+    nodePrimary:   'rgba(108, 99, 255, ',
+    nodeSecondary: 'rgba(56, 189, 248, ',
+    nodeAccent:    'rgba(16, 185, 129, ',
+    line:          'rgba(108, 99, 255, ',
+    pulse:         'rgba(108, 99, 255, ',
+  };
+
+  let W, H, nodes, pulses;
+
+  /* ── Resize ── */
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    init();
+  }
+
+  /* ── Build nodes ── */
+  function init() {
+    const count = Math.floor((W * H) / 18000);
+    const palette = [COLORS.nodePrimary, COLORS.nodeSecondary, COLORS.nodeAccent];
+
+    nodes = Array.from({ length: count }, () => ({
+      x:    Math.random() * W,
+      y:    Math.random() * H,
+      vx:   (Math.random() - .5) * .35,
+      vy:   (Math.random() - .5) * .35,
+      r:    Math.random() * 2.2 + 1.2,
+      color: palette[Math.floor(Math.random() * palette.length)],
+      alpha: Math.random() * .5 + .4,
+    }));
+
+    pulses = [];
+  }
+
+  /* ── Spawn a data pulse along a random edge ── */
+  function spawnPulse() {
+    const maxDist = 160;
+    const a = nodes[Math.floor(Math.random() * nodes.length)];
+    // find a neighbour
+    const candidates = nodes.filter(b => {
+      const dx = b.x - a.x, dy = b.y - a.y;
+      return b !== a && Math.hypot(dx, dy) < maxDist;
+    });
+    if (!candidates.length) return;
+    const b = candidates[Math.floor(Math.random() * candidates.length)];
+    pulses.push({ ax: a.x, ay: a.y, bx: b.x, by: b.y, t: 0, speed: .012 + Math.random() * .012 });
+  }
+
+  /* ── Draw frame ── */
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    const maxDist = 160;
+
+    /* edges */
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < maxDist) {
+          const alpha = (1 - dist / maxDist) * .18;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = COLORS.line + alpha + ')';
+          ctx.lineWidth = .8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* data pulses */
+    pulses = pulses.filter(p => p.t <= 1);
+    pulses.forEach(p => {
+      p.t += p.speed;
+      const x = p.ax + (p.bx - p.ax) * p.t;
+      const y = p.ay + (p.by - p.ay) * p.t;
+      const grad = ctx.createRadialGradient(x, y, 0, x, y, 6);
+      grad.addColorStop(0, 'rgba(108,99,255,.9)');
+      grad.addColorStop(1, 'rgba(108,99,255,0)');
+      ctx.beginPath();
+      ctx.arc(x, y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    });
+
+    /* nodes */
+    nodes.forEach(n => {
+      /* glow */
+      const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 6);
+      glow.addColorStop(0, n.color + (n.alpha * .4) + ')');
+      glow.addColorStop(1, n.color + '0)');
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 6, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
+
+      /* core dot */
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = n.color + n.alpha + ')';
+      ctx.fill();
+
+      /* move */
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  /* ── Pulse timer ── */
+  setInterval(spawnPulse, 600);
+
+  /* ── Mouse repel ── */
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    nodes.forEach(n => {
+      const dx = n.x - mx, dy = n.y - my;
+      const dist = Math.hypot(dx, dy);
+      if (dist < 100) {
+        n.vx += (dx / dist) * .08;
+        n.vy += (dy / dist) * .08;
+        /* clamp speed */
+        const speed = Math.hypot(n.vx, n.vy);
+        if (speed > 1.5) { n.vx = (n.vx / speed) * 1.5; n.vy = (n.vy / speed) * 1.5; }
+      }
+    });
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+</script>
+  
+</body>
+</html>
